@@ -1,0 +1,20 @@
+<MenuScreen>:
+    name: "menu"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 20
+
+        Label:
+            id: bot_label
+            text: "Активный ботик: -"
+            font_size: 20
+
+        Button:
+            text: "Отправить сообщение"
+            on_release: root.go_send()
+
+        Button:
+            text: "Сменить бота"
+            on_release: root.go_login()

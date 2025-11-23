@@ -1,0 +1,26 @@
+<LoginScreen>:
+    name: "login"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 10
+
+        Label:
+            text: "Введите токен бота"
+            font_size: 20
+
+        TextInput:
+            id: token_input
+            hint_text: "Tокен"
+            multiline: False
+
+        Button:
+            text: "Войти"
+            font_size: 18
+            on_release: root.authentificate(token_input.text)
+
+        Label:
+            id: status
+            text: ""
+            markup: True

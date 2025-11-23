@@ -1,0 +1,29 @@
+<SendScreen>:
+    name: "send"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 10
+
+        TextInput:
+            id: chat_id
+            hint_text: "Введите chat_id группы или канала"
+            multiline: False
+
+        TextInput:
+            id: msg
+            hint_text: "Введите сообщение"
+
+        Button:
+            text: "Отправить"
+            on_release: root.send(chat_id.text, msg.text)
+
+        Label:
+            id: status
+            text: ""
+            markup: True
+
+        Button:
+            text: "Назад"
+            on_release: root.back()
