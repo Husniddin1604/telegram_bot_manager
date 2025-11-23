@@ -1,0 +1,84 @@
+<ControlPanelScreen>:
+    name: "control_panel"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Заголовок с кнопкой назад
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: 50
+            spacing: 10
+
+            Button:
+                text: "Назад"
+                size_hint_x: 0.3
+                background_color: 0.7, 0.7, 0.7, 1
+                background_normal: ""
+                on_release: root.back_to_menu()
+
+            Label:
+                text: "Панель управления"
+                font_size: 20
+                bold: True
+                color: 0.1, 0.1, 0.1, 1
+
+        # Основные кнопки управления
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y: 0.8
+
+            Button:
+                text: "Список публикаций"
+                font_size: 16
+                size_hint_y: None
+                height: 50
+                background_color: 0.2, 0.6, 0.8, 1
+                background_normal: ""
+                on_release: root.show_publications()
+
+            Button:
+                text: "Создать публикацию"
+                font_size: 16
+                size_hint_y: None
+                height: 50
+                background_color: 0.2, 0.7, 0.3, 1
+                background_normal: ""
+                on_release: root.create_publication()
+
+            Button:
+                text: "Шаблоны"
+                font_size: 16
+                size_hint_y: None
+                height: 50
+                background_color: 0.8, 0.5, 0.2, 1
+                background_normal: ""
+                on_release: root.show_templates()
+
+            Button:
+                text: "Настройки"
+                font_size: 16
+                size_hint_y: None
+                height: 50
+                background_color: 0.5, 0.3, 0.7, 1
+                background_normal: ""
+                on_release: root.show_settings()
+
+            Button:
+                text: "Лог и статистика"
+                font_size: 16
+                size_hint_y: None
+                height: 50
+                background_color: 0.7, 0.4, 0.2, 1
+                background_normal: ""
+                on_release: root.show_log_stats()

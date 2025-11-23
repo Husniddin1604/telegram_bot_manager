@@ -3,24 +3,80 @@
 
     BoxLayout:
         orientation: "vertical"
-        padding: 20
-        spacing: 10
+        padding: 40
+        spacing: 0
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
         Label:
-            text: "Введите токен бота"
-            font_size: 20
+            text: "Подключение Telegram-бота"
+            font_size: 24
+            bold: True
+            size_hint_y: None
+            height: 60
+            color: 0.1, 0.1, 0.1, 1
+            text_size: self.width, None
+            halign: "center"
+
+        Label:
+            text: "Введите API-токен, полученный от @BotFather"
+            font_size: 16
+            size_hint_y: None
+            height: 40
+            color: 0.5, 0.5, 0.5, 1
+            text_size: self.width, None
+            halign: "center"
 
         TextInput:
             id: token_input
-            hint_text: "Tокен"
+            hint_text: "Введите API-токен"
             multiline: False
+            size_hint_y: None
+            height: 50
+            padding: [15, 10]
+            background_color: 0.98, 0.98, 0.98, 1
+            foreground_color: 0.1, 0.1, 0.1, 1
+            background_normal: ""
+            background_active: ""
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                Line:
+                    width: 1
+                    rectangle: self.x, self.y, self.width, self.height
 
         Button:
-            text: "Войти"
-            font_size: 18
-            on_release: root.authentificate(token_input.text)
+            text: "Получите токен у @BotFather"
+            font_size: 14
+            size_hint_y: None
+            height: 30
+            background_color: 0, 0, 0, 0
+            color: 0.2, 0.5, 0.8, 1
+            bold: True
+            on_release: root.open_botfather()
+
+        Button:
+            id: login_btn
+            text: "Проверить токен"
+            font_size: 16
+            size_hint_y: None
+            height: 50
+            background_color: 0.2, 0.6, 0.8, 1
+            background_normal: ""
+            on_release: root.authenticate(token_input.text)
 
         Label:
             id: status
             text: ""
             markup: True
+            text_size: self.width, None
+            size_hint_y: None
+            height: 40
+            halign: "center"
+
+        Widget:
+            size_hint_y: 0.3

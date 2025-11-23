@@ -1,0 +1,54 @@
+<LogStatsScreen>:
+    name: "log_stats"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Заголовок с кнопкой назад
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: 50
+            spacing: 10
+
+            Button:
+                text: "Назад"
+                size_hint_x: 0.3
+                background_color: 0.7, 0.7, 0.7, 1
+                background_normal: ""
+                on_release: root.back_to_control_panel()
+
+            Label:
+                text: "Лог и статистика"
+                font_size: 20
+                bold: True
+                color: 0.1, 0.1, 0.1, 1
+
+        # Содержимое
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+
+            Label:
+                text: "Пока в разработке"
+                font_size: 18
+                color: 0.5, 0.5, 0.5, 1
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"
+
+            Label:
+                text: "В этом разделе будет отображаться статистика отправленных сообщений и история действий"
+                font_size: 14
+                color: 0.7, 0.7, 0.7, 1
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"
