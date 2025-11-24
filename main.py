@@ -3,15 +3,13 @@ from kivy.uix.screenmanager import ScreenManager, SlideTransition
 from kivy.lang import Builder
 from kivy.core.window import Window
 
-from screens.login_screen import LoginScreen
 from screens.menu_screen import MenuScreen
-from screens.send_screen import SendScreen
-from screens.bots_screen import BotsScreen
-from screens.control_panel_screen import ControlPanelScreen
 from screens.log_stats_screen import LogStatsScreen
+from screens.login_screen import LoginScreen
+from screens.create_publication_screen import CreatePublicationScreen
 
-# Устанавливаем размер окна
-Window.size = (400, 600)
+# Устанавливаем размер окна как у мобильного приложения
+Window.size = (360, 640)
 
 
 class MainScreenManager(ScreenManager):
@@ -23,21 +21,17 @@ class TelegramBotManager(App):
         self.title = "Telegram Bot Manager"
         sm = MainScreenManager(transition=SlideTransition(direction='left'))
 
-        # Загружаем все kv файлы
-        Builder.load_file("ui/login.kv")
+        # Загружаем kv файлы
         Builder.load_file("ui/menu.kv")
-        Builder.load_file("ui/send.kv")
-        Builder.load_file("ui/bots.kv")
-        Builder.load_file("ui/control_panel.kv")
         Builder.load_file("ui/log_stats.kv")
+        Builder.load_file("ui/login.kv")
+        Builder.load_file("ui/create_publication.kv")
 
-        # Добавляем все экраны
+        # Добавляем экраны
         sm.add_widget(LoginScreen(name="login"))
         sm.add_widget(MenuScreen(name="menu"))
-        sm.add_widget(SendScreen(name="send"))
-        sm.add_widget(BotsScreen(name="bots"))
-        sm.add_widget(ControlPanelScreen(name="control_panel"))
         sm.add_widget(LogStatsScreen(name="log_stats"))
+        sm.add_widget(CreatePublicationScreen(name="create_publication"))
 
         return sm
 

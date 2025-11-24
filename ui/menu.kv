@@ -3,8 +3,8 @@
 
     BoxLayout:
         orientation: "vertical"
-        padding: 30
-        spacing: 25
+        padding: 0
+        spacing: 0
         canvas.before:
             Color:
                 rgba: 1, 1, 1, 1
@@ -12,76 +12,139 @@
                 pos: self.pos
                 size: self.size
 
-        Label:
-            text: "Главное меню"
-            font_size: 24
-            bold: True
-            size_hint_y: 0.15
-            color: 0.1, 0.1, 0.1, 1
-
+        # Верхняя панель с кнопкой Назад и заголовком
         BoxLayout:
-            orientation: "vertical"
-            spacing: 10
-            size_hint_y: 0.25
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "60dp"
+            padding: ["10dp", "10dp", "10dp", "10dp"]
             canvas.before:
                 Color:
-                    rgba: 0.97, 0.97, 0.97, 1
+                    rgba: 0.95, 0.95, 0.95, 1
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            padding: 15
+
+            Button:
+                text: "Назад"
+                size_hint_x: None
+                width: "100dp"
+                background_color: 0.8, 0.8, 0.8, 1
+                background_normal: ""
+                color: 0.2, 0.2, 0.2, 1
+                on_release: root.back_to_previous()
 
             Label:
-                id: bot_label
-                text: "Бот не подключен"
-                font_size: 16
+                text: "Панель управления"
+                font_size: "18sp"
                 bold: True
                 color: 0.1, 0.1, 0.1, 1
-
-            Label:
-                id: bot_info
-                text: "Подключите бота для начала работы"
-                font_size: 14
                 text_size: self.width, None
-                color: 0.5, 0.5, 0.5, 1
+                halign: "center"
+                valign: "middle"
 
-        BoxLayout:
-            orientation: "vertical"
-            spacing: 12
-            size_hint_y: 0.5
+        # Разделитель - используем виджет с линией
+        Widget:
+            size_hint_y: None
+            height: "1dp"
+            canvas:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
-            Button:
-                text: "Отправить сообщение"
-                font_size: 16
+        # Основное меню - прокручиваемый список
+        ScrollView:
+            do_scroll_x: False
+            BoxLayout:
+                orientation: "vertical"
                 size_hint_y: None
-                height: 50
-                background_color: 0.2, 0.7, 0.3, 1
-                background_normal: ""
-                on_release: root.go_send()
+                height: self.minimum_height
+                padding: 0
+                spacing: 0
 
-            Button:
-                text: "Панель управления"
-                font_size: 16
-                size_hint_y: None
-                height: 50
-                background_color: 0.8, 0.5, 0.2, 1
-                background_normal: ""
-                on_release: root.go_control_panel()
+                # Список публикаций
+                Button:
+                    text: "Список публикаций"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.show_publications()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
 
-            Button:
-                text: "Управление ботами"
-                font_size: 16
-                size_hint_y: None
-                height: 50
-                background_color: 0.2, 0.6, 0.8, 1
-                background_normal: ""
-                on_release: root.go_bots()
+                # Создать публикацию
+                Button:
+                    text: "Создать публикацию"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.create_publication()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
 
-            Button:
-                text: "Подключить бота"
-                font_size: 16
-                size_hint_y: None
-                height: 50
-                background_color: 0.7, 0.3, 0.5, 1
-                background_normal: ""
-                on_release: root.go_login()
+                # Шаблоны
+                Button:
+                    text: "Шаблоны"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.show_templates()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
+
+                # Настройки
+                Button:
+                    text: "Настройки"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.show_settings()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
+
+                # Лог и статистика
+                Button:
+                    text: "Лог и статистика"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.show_log_stats()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
