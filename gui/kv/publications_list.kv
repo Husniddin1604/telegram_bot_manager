@@ -1,0 +1,27 @@
+# gui/kv/publications_list.kv
+<PublicationsListScreen>:
+    RecycleView:
+        viewclass: "PublicationCard"
+        data: root.publications
+
+<PublicationCard@BoxLayout>:
+    orientation: "vertical"
+    padding: 10
+    spacing: 5
+
+    Label:
+        text: root.title
+
+    Label:
+        text: root.text
+
+    Label:
+        text: root.status
+        color: (0,1,0,1) if root.status == "sent" else (1,0,0,1) if root.status == "error" else (0,0,1,1)
+
+    BoxLayout:
+        spacing: 10
+        Button:
+            text: "Edit"
+        Button:
+            text: "Delete"

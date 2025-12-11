@@ -1,0 +1,21 @@
+<SettingsScreen>:
+    bot_name_input: bot_name_input
+    theme_toggle: theme_toggle
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 20
+
+        TextInput:
+            id: bot_name_input
+            hint_text: "Имя бота"
+
+        Button:
+            text: "Добавить канал"
+            on_release: root.add_channel()
+
+        ToggleButton:
+            id: theme_toggle
+            text: "Dark theme"
+            on_state: root.toggle_theme()

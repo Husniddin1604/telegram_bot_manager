@@ -1,0 +1,100 @@
+# gui/kv/publish.kv
+<PublishScreen>:
+    channel_spinner: channel_spinner
+    text_input: text_input
+    date_input: date_input
+    time_input: time_input
+    media_path_label: media_path_label
+
+    ScrollView:
+        BoxLayout:
+            orientation: "vertical"
+            padding: 20
+            spacing: 20
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                text: "Выбор канала"
+                size_hint_y: None
+                height: 30
+                font_size: 18
+
+            Spinner:
+                id: channel_spinner
+                text: "Выберите канал"
+                size_hint_y: None
+                height: 50
+
+            Label:
+                text: "Текст публикации"
+                size_hint_y: None
+                height: 30
+                font_size: 18
+
+            TextInput:
+                id: text_input
+                hint_text: "Введите текст сообщения"
+                size_hint_y: None
+                height: 200
+                multiline: True
+
+            Label:
+                text: "Медиа файл"
+                size_hint_y: None
+                height: 30
+                font_size: 18
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+                spacing: 10
+
+                Button:
+                    text: "Выбрать файл"
+                    on_release: root.choose_media()
+
+                Label:
+                    id: media_path_label
+                    text: "Не выбран"
+
+            Label:
+                text: "Дата и время"
+                size_hint_y: None
+                height: 30
+                font_size: 18
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+                spacing: 10
+
+                TextInput:
+                    id: date_input
+                    hint_text: "YYYY-MM-DD"
+                    multiline: False
+
+                TextInput:
+                    id: time_input
+                    hint_text: "HH:MM"
+                    multiline: False
+
+            Button:
+                text: "Inline кнопки (в разработке)"
+                size_hint_y: None
+                height: 50
+                on_release: root.inline_buttons_popup()
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+                spacing: 10
+
+                Button:
+                    text: "Отмена"
+                    on_release: root.manager.current = "main_menu"
+
+                Button:
+                    text: "Сохранить"
+                    background_color: 0.2, 0.7, 0.3, 1
+                    on_release: root.save_publication()

@@ -1,0 +1,17 @@
+<MainMenuScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+
+        Button:
+            text: "Создать публикацию"
+            on_release: root.go_publish()
+
+        Button:
+            text: "Список публикаций"
+            on_release: root.go_publications()
+
+        Button:
+            text: "Настройки"
+            on_release: root.go_settings()

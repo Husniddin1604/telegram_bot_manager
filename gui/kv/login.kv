@@ -1,0 +1,45 @@
+# gui/kv/login.kv
+# Заменяем ListView на ScrollView + GridLayout
+<LoginScreen>:
+    token_input: token_input
+    bots_container: bots_container
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: "Вход"
+            font_size: 28
+            size_hint_y: None
+            height: 50
+
+        TextInput:
+            id: token_input
+            hint_text: "Введите токен бота"
+            size_hint_y: None
+            height: 50
+            multiline: False
+
+        Button:
+            text: "Добавить бота"
+            size_hint_y: None
+            height: 50
+            on_release: root.add_bot()
+
+        Label:
+            text: "Сохранённые боты:"
+            size_hint_y: None
+            height: 30
+            font_size: 18
+
+        ScrollView:
+            size_hint_y: 1
+
+            GridLayout:
+                id: bots_container
+                cols: 1
+                spacing: 10
+                size_hint_y: None
+                height: self.minimum_height
