@@ -1,0 +1,150 @@
+<MenuScreen>:
+    name: "menu"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 0
+        spacing: 0
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Верхняя панель с кнопкой Назад и заголовком
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "60dp"
+            padding: ["10dp", "10dp", "10dp", "10dp"]
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.95, 0.95, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Button:
+                text: "Назад"
+                size_hint_x: None
+                width: "100dp"
+                background_color: 0.8, 0.8, 0.8, 1
+                background_normal: ""
+                color: 0.2, 0.2, 0.2, 1
+                on_release: root.back_to_previous()
+
+            Label:
+                text: "Панель управления"
+                font_size: "18sp"
+                bold: True
+                color: 0.1, 0.1, 0.1, 1
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"
+
+        # Разделитель - используем виджет с линией
+        Widget:
+            size_hint_y: None
+            height: "1dp"
+            canvas:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        # Основное меню - прокручиваемый список
+        ScrollView:
+            do_scroll_x: False
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: 0
+                spacing: 0
+
+                # Список публикаций
+                Button:
+                    text: "Список публикаций"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.show_publications()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
+
+                # Создать публикацию
+                Button:
+                    text: "Создать публикацию"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.create_publication()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
+
+                # Шаблоны
+                Button:
+                    text: "Шаблоны"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.show_templates()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
+
+                # Настройки
+                Button:
+                    text: "Настройки"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.show_settings()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1
+
+                # Лог и статистика
+                Button:
+                    text: "Лог и статистика"
+                    font_size: "16sp"
+                    size_hint_y: None
+                    height: "50dp"
+                    background_color: 0.95, 0.95, 0.95, 1
+                    background_normal: ""
+                    color: 0.1, 0.1, 0.1, 1
+                    on_release: root.show_log_stats()
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.8, 0.8, 1
+                        Line:
+                            points: self.x, self.y, self.x + self.width, self.y
+                            width: 1

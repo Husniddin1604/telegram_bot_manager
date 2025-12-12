@@ -1,0 +1,69 @@
+<LogStatsScreen>:
+    name: "log_stats"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 0
+        spacing: 0
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Верхняя панель с кнопкой Назад и заголовком
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "60dp"
+            padding: ["10dp", "10dp", "10dp", "10dp"]
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.95, 0.95, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Button:
+                text: "Назад"
+                size_hint_x: None
+                width: "100dp"
+                background_color: 0.8, 0.8, 0.8, 1
+                background_normal: ""
+                color: 0.2, 0.2, 0.2, 1
+                on_release: root.back_to_menu()
+
+            Label:
+                text: "Лог и статистика"
+                font_size: "18sp"
+                bold: True
+                color: 0.1, 0.1, 0.1, 1
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"
+
+        # Разделитель
+        Widget:
+            size_hint_y: None
+            height: "1dp"
+            canvas:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        # Содержимое
+        BoxLayout:
+            orientation: "vertical"
+            padding: ["40dp", "40dp", "40dp", "40dp"]
+            spacing: "20dp"
+
+            Label:
+                text: "Пока в разработке"
+                font_size: "20sp"
+                color: 0.5, 0.5, 0.5, 1
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"

@@ -1,0 +1,101 @@
+<SendScreen>:
+    name: "send"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "15dp"
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Заголовок с кнопкой назад
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "50dp"
+            spacing: "10dp"
+
+            Button:
+                text: "Назад"
+                size_hint_x: None
+                width: "100dp"
+                background_color: 0.8, 0.8, 0.8, 1
+                background_normal: ""
+                on_release: root.back_to_menu()
+
+            Label:
+                text: "Отправка сообщения"
+                font_size: "20sp"
+                bold: True
+                color: 0.1, 0.1, 0.1, 1
+
+        # Информация о боте
+        Label:
+            id: bot_info
+            text: "Бот не выбран"
+            font_size: "14sp"
+            size_hint_y: None
+            height: "30dp"
+            text_size: self.width, None
+            color: 0.8, 0.2, 0.2, 1
+
+        # Поле для chat_id
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "50dp"
+            spacing: "10dp"
+
+            TextInput:
+                id: chat_id_input
+                hint_text: "Введите chat_id канала или группы"
+                multiline: False
+                padding: [10, 10]
+
+            Button:
+                text: "?"
+                size_hint_x: None
+                width: "40dp"
+                background_color: 0.3, 0.5, 0.8, 1
+                on_release: root.show_help()
+
+        # Поле для текста сообщения
+        TextInput:
+            id: message_input
+            hint_text: "Введите текст сообщения..."
+            multiline: True
+            size_hint_y: 0.5
+            padding: [10, 10]
+
+        # Кнопка отправки
+        Button:
+            id: send_btn
+            text: "Отправить сообщение"
+            font_size: "16sp"
+            size_hint_y: None
+            height: "50dp"
+            background_color: 0.2, 0.6, 0.8, 1
+            background_normal: ""
+            on_release: root.send_message()
+
+        # Статус
+        Label:
+            id: status
+            text: ""
+            markup: True
+            size_hint_y: None
+            height: "40dp"
+            text_size: self.width, None
+
+        # Подсказка
+        Label:
+            text: "Для отправки в канал добавьте бота как администратора"
+            font_size: "12sp"
+            size_hint_y: None
+            height: "30dp"
+            color: 0.5, 0.5, 0.5, 1
+            text_size: self.width, None

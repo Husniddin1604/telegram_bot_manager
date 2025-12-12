@@ -1,0 +1,267 @@
+<CreatePublicationScreen>:
+    name: "create_publication"
+
+    ScrollView:
+        do_scroll_x: False
+        BoxLayout:
+            orientation: "vertical"
+            padding: "20dp"
+            spacing: "15dp"
+            size_hint_y: None
+            height: self.minimum_height
+
+            # Верхняя панель
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "50dp"
+                spacing: "10dp"
+
+                Button:
+                    text: "Назад"
+                    size_hint_x: None
+                    width: "100dp"
+                    background_color: 0.8, 0.8, 0.8, 1
+                    background_normal: ""
+                    on_release: root.back_to_menu()
+
+                Label:
+                    text: "Новая публикация"
+                    font_size: "20sp"
+                    bold: True
+                    color: 0.1, 0.1, 0.1, 1
+
+            # Управление чатами
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+                spacing: "10dp"
+
+                Button:
+                    text: "Найти чаты"
+                    size_hint_x: 0.5
+                    background_color: 0.3, 0.5, 0.7, 1
+                    background_normal: ""
+                    on_release: root.discover_chats()
+
+                Button:
+                    text: "Добавить вручную"
+                    size_hint_x: 0.5
+                    background_color: 0.7, 0.5, 0.3, 1
+                    background_normal: ""
+                    on_release: root.add_chat_manually()
+
+            # Выбор канала/группы
+            Label:
+                text: "Куда отправить сообщение"
+                font_size: "16sp"
+                bold: True
+                size_hint_y: None
+                height: "30dp"
+                color: 0.1, 0.1, 0.1, 1
+
+            Spinner:
+                id: channel_spinner
+                text: "Выберите канал или группу"
+                values: ["Выберите канал или группу"]
+                size_hint_y: None
+                height: "40dp"
+
+            # Текст публикации
+            Label:
+                text: "Текст публикации"
+                font_size: "16sp"
+                bold: True
+                size_hint_y: None
+                height: "30dp"
+                color: 0.1, 0.1, 0.1, 1
+
+            TextInput:
+                id: publication_text
+                hint_text: "Введите текст публикации..."
+                multiline: True
+                size_hint_y: None
+                height: "150dp"
+                padding: [10, 10]
+
+            # Разделитель
+            Widget:
+                size_hint_y: None
+                height: "1dp"
+                canvas:
+                    Color:
+                        rgba: 0.8, 0.8, 0.8, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            # Добавить медиа
+            Button:
+                text: "Добавить медиа"
+                size_hint_y: None
+                height: "40dp"
+                background_color: 0.9, 0.9, 0.9, 1
+                background_normal: ""
+                on_release: root.add_media()
+
+            # Инлайн-кнопки
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+                spacing: "10dp"
+
+                Label:
+                    text: "Инлайн-кнопки"
+                    font_size: "14sp"
+                    color: 0.3, 0.3, 0.3, 1
+
+                Button:
+                    text: "+ Добавить кнопку"
+                    size_hint_x: 0.6
+                    background_color: 0.9, 0.9, 0.9, 1
+                    background_normal: ""
+                    on_release: root.add_button()
+
+            # Разделитель
+            Widget:
+                size_hint_y: None
+                height: "1dp"
+                canvas:
+                    Color:
+                        rgba: 0.8, 0.8, 0.8, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            # Настройки отправки
+            Label:
+                text: "Настройки отправки"
+                font_size: "16sp"
+                bold: True
+                size_hint_y: None
+                height: "30dp"
+                color: 0.1, 0.1, 0.1, 1
+
+            # Запланировать
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+                spacing: "10dp"
+
+                Button:
+                    text: "Запланировать"
+                    background_color: 0.9, 0.9, 0.9, 1
+                    background_normal: ""
+                    on_release: root.show_schedule_popup()
+
+                Label:
+                    text: "Выберите дату и время"
+                    font_size: "14sp"
+                    color: 0.5, 0.5, 0.5, 1
+
+            # Дата и время (заглушки)
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+                spacing: "10dp"
+
+                Label:
+                    text: "Дата"
+                    size_hint_x: 0.3
+                    font_size: "14sp"
+
+                Label:
+                    text: "mm/dd/yyyy"
+                    size_hint_x: 0.7
+                    font_size: "14sp"
+                    color: 0.5, 0.5, 0.5, 1
+                    canvas.before:
+                        Color:
+                            rgba: 0.9, 0.9, 0.9, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+                spacing: "10dp"
+
+                Label:
+                    text: "Время"
+                    size_hint_x: 0.3
+                    font_size: "14sp"
+
+                Label:
+                    text: "--:--"
+                    size_hint_x: 0.7
+                    font_size: "14sp"
+                    color: 0.5, 0.5, 0.5, 1
+                    canvas.before:
+                        Color:
+                            rgba: 0.9, 0.9, 0.9, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+            # Разделитель
+            Widget:
+                size_hint_y: None
+                height: "1dp"
+                canvas:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            # Повторять
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "40dp"
+                spacing: "10dp"
+
+                Label:
+                    text: "Повторять"
+                    font_size: "14sp"
+
+                Button:
+                    text: "Не повторять"
+                    background_color: 0.9, 0.9, 0.9, 1
+                    background_normal: ""
+                    on_release: root.show_repeat_popup()
+
+            # Кнопки действий
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "50dp"
+                spacing: "10dp"
+
+                Button:
+                    id: send_btn
+                    text: "Отправить"
+                    background_color: 0.2, 0.6, 0.8, 1
+                    background_normal: ""
+                    on_release: root.send_publication()
+
+                Button:
+                    text: "Сохранить как шаблон"
+                    background_color: 0.3, 0.5, 0.7, 1
+                    background_normal: ""
+                    on_release: root.save_as_template()
+
+            # Статус
+            Label:
+                id: status_label
+                text: ""
+                markup: True
+                size_hint_y: None
+                height: "40dp"
+                text_size: self.width, None

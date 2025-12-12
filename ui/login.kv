@@ -1,0 +1,117 @@
+<LoginScreen>:
+    name: "login"
+
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Заголовок - на 2 см ниже верхней границы
+        Label:
+            text: "Подключение Telegram-бота"
+            font_size: "24sp"
+            bold: True
+            size_hint: 0.8, None
+            height: "60dp"
+            color: 0.1, 0.1, 0.1, 1
+            pos_hint: {"center_x": 0.5, "top": 0.9}  # 2 см от верха
+
+        # Подзаголовок - чуть выше центра
+        Label:
+            text: "Введите API-токен, полученный от @BotFather"
+            font_size: "16sp"
+            size_hint: 0.8, None
+            height: "40dp"
+            color: 0.5, 0.5, 0.5, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.65}  # Чуть выше центра
+
+        # Поле ввода токена - по центру
+        TextInput:
+            id: token_input
+            hint_text: "Введите API-токен"
+            multiline: False
+            size_hint: 0.8, None
+            height: "50dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}  # По центру
+            padding: [15, 10]
+            background_color: 0.98, 0.98, 0.98, 1
+            foreground_color: 0.1, 0.1, 0.1, 1
+            background_normal: ""
+            background_active: ""
+            canvas.before:
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                Line:
+                    width: 1
+                    rectangle: self.x, self.y, self.width, self.height
+
+        # Ссылка на BotFather
+        Button:
+            text: "Получите токен у @BotFather"
+            font_size: "14sp"
+            size_hint: 0.8, None
+            height: "30dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            background_color: 0, 0, 0, 0
+            color: 0.2, 0.5, 0.8, 1
+            bold: True
+            on_release: root.open_botfather()
+
+        # Список использованных ботов
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 0.8, None
+            height: "120dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.25}
+            spacing: "5dp"
+
+            Label:
+                text: "Список использованных ботов:"
+                font_size: "14sp"
+                size_hint_y: None
+                height: "25dp"
+                color: 0.3, 0.3, 0.3, 1
+
+            Spinner:
+                id: bots_spinner
+                text: "Нет сохраненных ботов"
+                values: []
+                size_hint_y: None
+                height: "40dp"
+                disabled: True
+
+            Button:
+                id: use_existing_btn
+                text: "Использовать выбранного бота"
+                font_size: "14sp"
+                size_hint_y: None
+                height: "40dp"
+                background_color: 0.3, 0.5, 0.7, 1
+                background_normal: ""
+                disabled: True
+                on_release: root.use_existing_bot()
+
+        # Кнопка проверки токена
+        Button:
+            id: login_btn
+            text: "Проверить токен"
+            font_size: "16sp"
+            size_hint: 0.8, None
+            height: "50dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            background_color: 0.2, 0.6, 0.8, 1
+            background_normal: ""
+            on_release: root.authenticate(token_input.text)
+
+        # Статус
+        Label:
+            id: status
+            text: ""
+            markup: True
+            size_hint: 0.8, None
+            height: "40dp"
+            pos_hint: {"center_x": 0.5, "top": 0.02}
+            halign: "center"

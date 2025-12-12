@@ -1,0 +1,53 @@
+<BotsScreen>:
+    name: "bots"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 25
+        spacing: 20
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Управление ботами"
+            font_size: 24
+            bold: True
+            size_hint_y: None
+            height: 60
+            color: 0.1, 0.1, 0.1, 1
+            text_size: self.width, None
+            halign: "center"
+
+        Label:
+            id: status
+            text: ""
+            markup: True
+            text_size: self.width, None
+            size_hint_y: None
+            height: 30
+            halign: "center"
+
+        ScrollView:
+            size_hint_y: 1
+            do_scroll_x: False
+
+            GridLayout:
+                id: bots_list
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 5
+                padding: 5
+
+        Button:
+            text: "Назад в меню"
+            font_size: 16
+            size_hint_y: None
+            height: 50
+            background_color: 0.7, 0.7, 0.7, 1
+            background_normal: ""
+            on_release: root.back_to_menu()
