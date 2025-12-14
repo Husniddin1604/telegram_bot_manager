@@ -1,3 +1,5 @@
+import os
+print("Путь к изображению существует?", os.path.exists("assets/bot_icon.png"))
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, SlideTransition
 from kivy.lang import Builder

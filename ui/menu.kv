@@ -1,150 +1,148 @@
-<MenuScreen>:
-    name: "menu"
+# Сетка карточек 2x2 — СТАБИЛЬНАЯ
+GridLayout:
+    cols: 2
+    spacing: dp(20)
+    padding: dp(24), dp(100), dp(24), dp(40)
+    size_hint_x: 0.9
+    size_hint_y: None
+    height: dp(420)
+    pos_hint: {"center_x": 0.5, "top": 0.85}
 
-    BoxLayout:
-        orientation: "vertical"
-        padding: 0
-        spacing: 0
+    # ===== Карточка 1 =====
+    Button:
+        size_hint_y: None
+        height: dp(190)
+        background_color: 1, 1, 1, 1
+        background_normal: ""
+        on_release: root.show_publications()
         canvas.before:
             Color:
-                rgba: 1, 1, 1, 1
-            Rectangle:
+                rgba: 0.95, 0.95, 0.95, 0.9
+            RoundedRectangle:
+                radius: [20]
                 pos: self.pos
                 size: self.size
 
-        # Верхняя панель с кнопкой Назад и заголовком
         BoxLayout:
-            orientation: "horizontal"
-            size_hint_y: None
-            height: "60dp"
-            padding: ["10dp", "10dp", "10dp", "10dp"]
-            canvas.before:
-                Color:
-                    rgba: 0.95, 0.95, 0.95, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
+            orientation: "vertical"
+            padding: dp(20)
+            spacing: dp(12)
 
-            Button:
-                text: "Назад"
-                size_hint_x: None
-                width: "100dp"
-                background_color: 0.8, 0.8, 0.8, 1
-                background_normal: ""
-                color: 0.2, 0.2, 0.2, 1
-                on_release: root.back_to_previous()
+            Widget:
+
+            Image:
+                source: "assets/publications_icon.png"
+                size_hint: None, None
+                size: dp(72), dp(72)
+                allow_stretch: True
+                keep_ratio: True
 
             Label:
-                text: "Панель управления"
-                font_size: "18sp"
-                bold: True
-                color: 0.1, 0.1, 0.1, 1
-                text_size: self.width, None
+                text: "Список\nпубликаций"
+                font_size: "16sp"
+                color: 0.25, 0.25, 0.6, 1
                 halign: "center"
-                valign: "middle"
+                text_size: self.width, None
 
-        # Разделитель - используем виджет с линией
-        Widget:
-            size_hint_y: None
-            height: "1dp"
-            canvas:
-                Color:
-                    rgba: 0.8, 0.8, 0.8, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
+            Widget:
 
-        # Основное меню - прокручиваемый список
-        ScrollView:
-            do_scroll_x: False
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: None
-                height: self.minimum_height
-                padding: 0
-                spacing: 0
+    # ===== Карточка 2 =====
+    Button:
+        size_hint_y: None
+        height: dp(190)
+        background_color: 1, 1, 1, 1
+        background_normal: ""
+        on_release: root.create_publication()
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 0.9
+            RoundedRectangle:
+                radius: [20]
+                pos: self.pos
+                size: self.size
 
-                # Список публикаций
-                Button:
-                    text: "Список публикаций"
-                    font_size: "16sp"
-                    size_hint_y: None
-                    height: "50dp"
-                    background_color: 0.95, 0.95, 0.95, 1
-                    background_normal: ""
-                    color: 0.1, 0.1, 0.1, 1
-                    on_release: root.show_publications()
-                    canvas.after:
-                        Color:
-                            rgba: 0.8, 0.8, 0.8, 1
-                        Line:
-                            points: self.x, self.y, self.x + self.width, self.y
-                            width: 1
+        BoxLayout:
+            orientation: "vertical"
+            padding: dp(20)
+            spacing: dp(12)
 
-                # Создать публикацию
-                Button:
-                    text: "Создать публикацию"
-                    font_size: "16sp"
-                    size_hint_y: None
-                    height: "50dp"
-                    background_color: 0.95, 0.95, 0.95, 1
-                    background_normal: ""
-                    color: 0.1, 0.1, 0.1, 1
-                    on_release: root.create_publication()
-                    canvas.after:
-                        Color:
-                            rgba: 0.8, 0.8, 0.8, 1
-                        Line:
-                            points: self.x, self.y, self.x + self.width, self.y
-                            width: 1
+            Widget:
 
-                # Шаблоны
-                Button:
-                    text: "Шаблоны"
-                    font_size: "16sp"
-                    size_hint_y: None
-                    height: "50dp"
-                    background_color: 0.95, 0.95, 0.95, 1
-                    background_normal: ""
-                    color: 0.1, 0.1, 0.1, 1
-                    on_release: root.show_templates()
-                    canvas.after:
-                        Color:
-                            rgba: 0.8, 0.8, 0.8, 1
-                        Line:
-                            points: self.x, self.y, self.x + self.width, self.y
-                            width: 1
+            Image:
+                source: "assets/add_icon.png"
+                size_hint: None, None
+                size: dp(72), dp(72)
 
-                # Настройки
-                Button:
-                    text: "Настройки"
-                    font_size: "16sp"
-                    size_hint_y: None
-                    height: "50dp"
-                    background_color: 0.95, 0.95, 0.95, 1
-                    background_normal: ""
-                    color: 0.1, 0.1, 0.1, 1
-                    on_release: root.show_settings()
-                    canvas.after:
-                        Color:
-                            rgba: 0.8, 0.8, 0.8, 1
-                        Line:
-                            points: self.x, self.y, self.x + self.width, self.y
-                            width: 1
+            Label:
+                text: "Создать\nпубликацию"
+                font_size: "16sp"
+                halign: "center"
+                text_size: self.width, None
 
-                # Лог и статистика
-                Button:
-                    text: "Лог и статистика"
-                    font_size: "16sp"
-                    size_hint_y: None
-                    height: "50dp"
-                    background_color: 0.95, 0.95, 0.95, 1
-                    background_normal: ""
-                    color: 0.1, 0.1, 0.1, 1
-                    on_release: root.show_log_stats()
-                    canvas.after:
-                        Color:
-                            rgba: 0.8, 0.8, 0.8, 1
-                        Line:
-                            points: self.x, self.y, self.x + self.width, self.y
-                            width: 1
+            Widget:
+
+    # ===== Карточка 3 =====
+    Button:
+        size_hint_y: None
+        height: dp(190)
+        background_color: 1, 1, 1, 1
+        background_normal: ""
+        on_release: root.show_templates()
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 0.9
+            RoundedRectangle:
+                radius: [20]
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: dp(20)
+            spacing: dp(12)
+
+            Widget:
+
+            Image:
+                source: "assets/templates_icon.png"
+                size_hint: None, None
+                size: dp(72), dp(72)
+
+            Label:
+                text: "Шаблоны"
+                font_size: "16sp"
+                halign: "center"
+
+            Widget:
+
+    # ===== Карточка 4 =====
+    Button:
+        size_hint_y: None
+        height: dp(190)
+        background_color: 1, 1, 1, 1
+        background_normal: ""
+        on_release: root.show_settings()
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 0.9
+            RoundedRectangle:
+                radius: [20]
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: dp(20)
+            spacing: dp(12)
+
+            Widget:
+
+            Image:
+                source: "assets/settings_icon.png"
+                size_hint: None, None
+                size: dp(72), dp(72)
+
+            Label:
+                text: "Настройки"
+                font_size: "16sp"
+                halign: "center"

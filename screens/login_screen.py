@@ -5,7 +5,6 @@ import webbrowser
 from bot.bot_manager import bot_manager
 from bot.async_loop import async_loop
 
-
 class LoginScreen(Screen):
     def on_enter(self):
         """При входе на экран обновляем список ботов"""

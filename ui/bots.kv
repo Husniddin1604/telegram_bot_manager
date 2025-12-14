@@ -1,10 +1,6 @@
-<BotsScreen>:
-    name: "bots"
-
-    BoxLayout:
-        orientation: "vertical"
-        padding: 25
-        spacing: 20
+<LoginScreen>:
+    name: "login"
+    FloatLayout:
         canvas.before:
             Color:
                 rgba: 1, 1, 1, 1
@@ -12,42 +8,117 @@
                 pos: self.pos
                 size: self.size
 
+        # Логотип Telegram-бота — локальное изображение из папки assets
+        Image:
+            id: bot_icon
+            source: "assets/bot_icon.png" #относительно main.py
+            size_hint: None, None
+            size: "100dp", "100dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5} # Подберите значение top, чтобы иконка была ровно над заголовком
+            allow_stretch: True
+            keep_ratio: True
+
+        # Заголовок
         Label:
-            text: "Управление ботами"
-            font_size: 24
+            text: "Подключение Telegram-бота"
+            font_size: "24sp"
             bold: True
-            size_hint_y: None
-            height: 60
-            color: 0.1, 0.1, 0.1, 1
-            text_size: self.width, None
+            color: 0, 0, 0, 1
+            size_hint: 0.9, None
+            height: "60dp"
+            pos_hint: {"center_x": 0.5, "top": 0.8}
             halign: "center"
+            text_size: self.width, None
 
+        # Подзаголовок
         Label:
-            id: status
-            text: ""
-            markup: True
-            text_size: self.width, None
-            size_hint_y: None
-            height: 30
+            text: "Введите API-токен, полученный от @BotFather"
+            font_size: "16sp"
+            color: 0.5, 0.5, 0.5, 1
+            size_hint: 0.9, None
+            height: "50dp"
+            pos_hint: {"center_x": 0.5, "top": 0.68}
             halign: "center"
+            text_size: self.width, None
 
-        ScrollView:
-            size_hint_y: 1
-            do_scroll_x: False
-
-            GridLayout:
-                id: bots_list
-                cols: 1
-                size_hint_y: None
-                height: self.minimum_height
-                spacing: 5
-                padding: 5
-
-        Button:
-            text: "Назад в меню"
-            font_size: 16
-            size_hint_y: None
-            height: 50
-            background_color: 0.7, 0.7, 0.7, 1
+        # Поле ввода токена
+        TextInput:
+            id: token_input
+            hint_text: "Введите API-токен"
+            hint_text_color: 0.6, 0.6, 0.6, 1
+            multiline: False
+            size_hint: 0.85, None
+            height: "55dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            padding: [20, 18]
+            font_size: "16sp"
+            background_color: 1, 1, 1, 1
+            foreground_color: 0, 0, 0, 1
+            cursor_color: 0.2, 0.5, 0.8, 1
             background_normal: ""
-            on_release: root.back_to_menu()
+            background_active: ""
+            canvas.before:
+                Color:
+                    rgba: 0.85, 0.85, 0.85, 1
+                RoundedRectangle:
+                    radius: [12,]
+                    pos: self.x + 2, self.y + 2
+                    size: self.width - 4, self.height - 4
+                Color:
+                    rgba: 0.8, 0.8, 0.8, 1
+                Line:
+                    rounded_rectangle: [self.x, self.y, self.width, self.height, 12, 12, 12, 12]
+                    width: 1.2
+
+        # Ссылка "Получите токен у @BotFather"
+        Button:
+            text: "Получите токен у @BotFather"
+            font_size: "15sp"
+            color: 0.1, 0.45, 0.8, 1
+            bold: True
+            background_color: 0, 0, 0, 0
+            size_hint: 0.85, None
+            height: "40dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.38}
+            on_release: root.open_botfather()
+
+        # Кнопка "Проверить токен"
+        Button:
+            id: check_token_btn
+            text: "Проверить токен"
+            font_size: "17sp"
+            bold: True
+            color: 1, 1, 1, 1
+            background_color: 0.76, 0.76, 0.76, 1
+            background_normal: ""
+            size_hint: 0.85, None
+            height: "55dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.25}
+            canvas.before:
+                Color:
+                    rgba: 0.82, 0.82, 0.82, 1
+                RoundedRectangle:
+                    radius: [12,]
+                    pos: self.x, self.y
+                    size: self.width, self.height
+
+        # Кнопка "Войти"
+        Button:
+            id: login_btn
+            text: "Войти"
+            font_size: "18sp"
+            bold: True
+            color: 1, 1, 1, 1
+            background_color: 0.1, 0.45, 0.95, 1
+            background_normal: ""
+            size_hint: 0.85, None
+            height: "55dp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.14}
+            canvas.before:
+                Color:
+                    rgba: 0.1, 0.5, 1, 1
+                RoundedRectangle:
+                    radius: [12,]
+                    pos: self.x, self.y
+                    size: self.width, self.height
+            on_release: root.authenticate(token_input.text)
