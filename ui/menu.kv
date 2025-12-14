@@ -1,148 +1,221 @@
-# Сетка карточек 2x2 — СТАБИЛЬНАЯ
-GridLayout:
-    cols: 2
-    spacing: dp(20)
-    padding: dp(24), dp(100), dp(24), dp(40)
-    size_hint_x: 0.9
-    size_hint_y: None
-    height: dp(420)
-    pos_hint: {"center_x": 0.5, "top": 0.85}
+<MenuScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
-    # ===== Карточка 1 =====
-    Button:
-        size_hint_y: None
-        height: dp(190)
-        background_color: 1, 1, 1, 1
-        background_normal: ""
-        on_release: root.show_publications()
-        canvas.before:
-            Color:
-                rgba: 0.95, 0.95, 0.95, 0.9
-            RoundedRectangle:
-                radius: [20]
-                pos: self.pos
-                size: self.size
-
+    FloatLayout:
+        # Верхний хедер
         BoxLayout:
-            orientation: "vertical"
-            padding: dp(20)
-            spacing: dp(12)
-
-            Widget:
-
-            Image:
-                source: "assets/publications_icon.png"
-                size_hint: None, None
-                size: dp(72), dp(72)
-                allow_stretch: True
-                keep_ratio: True
+            orientation: 'horizontal'
+            size_hint: 1, None
+            height: dp(60)
+            pos_hint: {"top": 1}
+            padding: dp(20), dp(15)
 
             Label:
-                text: "Список\nпубликаций"
-                font_size: "16sp"
-                color: 0.25, 0.25, 0.6, 1
-                halign: "center"
-                text_size: self.width, None
+                text: "Главное меню"
+                font_size: "20sp"
+                color: 0.2, 0.2, 0.2, 1
+                halign: "left"
+                valign: "middle"
+                text_size: self.size
 
-            Widget:
-
-    # ===== Карточка 2 =====
-    Button:
-        size_hint_y: None
-        height: dp(190)
-        background_color: 1, 1, 1, 1
-        background_normal: ""
-        on_release: root.create_publication()
-        canvas.before:
-            Color:
-                rgba: 0.95, 0.95, 0.95, 0.9
-            RoundedRectangle:
-                radius: [20]
-                pos: self.pos
-                size: self.size
-
-        BoxLayout:
-            orientation: "vertical"
-            padding: dp(20)
-            spacing: dp(12)
-
-            Widget:
-
-            Image:
-                source: "assets/add_icon.png"
+            Button:
+                text: "Выйти"
                 size_hint: None, None
-                size: dp(72), dp(72)
-
-            Label:
-                text: "Создать\nпубликацию"
+                width: dp(80)
+                height: dp(40)
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                color: 0.9, 0.3, 0.3, 1
                 font_size: "16sp"
-                halign: "center"
-                text_size: self.width, None
+                bold: True
+                on_release: root.back_to_previous()
 
-            Widget:
-
-    # ===== Карточка 3 =====
-    Button:
-        size_hint_y: None
-        height: dp(190)
-        background_color: 1, 1, 1, 1
-        background_normal: ""
-        on_release: root.show_templates()
-        canvas.before:
-            Color:
-                rgba: 0.95, 0.95, 0.95, 0.9
-            RoundedRectangle:
-                radius: [20]
-                pos: self.pos
-                size: self.size
-
-        BoxLayout:
-            orientation: "vertical"
+        # Сетка карточек
+        GridLayout:
+            cols: 2
+            rows: 2
+            spacing: dp(16)
             padding: dp(20)
-            spacing: dp(12)
+            size_hint: None, None
+            width: dp(320)
+            height: dp(400)
+            pos_hint: {"center_x": 0.5, "center_y": 0.48}
 
-            Widget:
-
-            Image:
-                source: "assets/templates_icon.png"
+            # Карточка 1: Список публикаций
+            Button:
                 size_hint: None, None
-                size: dp(72), dp(72)
+                width: dp(145)
+                height: dp(185)
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                on_release: root.show_publications()
 
-            Label:
-                text: "Шаблоны"
-                font_size: "16sp"
-                halign: "center"
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1
+                    RoundedRectangle:
+                        radius: [dp(16)]
+                        pos: self.pos
+                        size: self.size
 
-            Widget:
+                BoxLayout:
+                    orientation: "vertical"
+                    padding: dp(10)
+                    spacing: dp(5)
 
-    # ===== Карточка 4 =====
-    Button:
-        size_hint_y: None
-        height: dp(190)
-        background_color: 1, 1, 1, 1
-        background_normal: ""
-        on_release: root.show_settings()
-        canvas.before:
-            Color:
-                rgba: 0.95, 0.95, 0.95, 0.9
-            RoundedRectangle:
-                radius: [20]
-                pos: self.pos
-                size: self.size
+                    Widget:
+                        size_hint_y: 0.15
 
-        BoxLayout:
-            orientation: "vertical"
-            padding: dp(20)
-            spacing: dp(12)
+                    Label:
+                        text: "📄"
+                        font_size: "50sp"
+                        size_hint_y: None
+                        height: dp(70)
+                        halign: "center"
+                        valign: "middle"
 
-            Widget:
+                    Label:
+                        text: "Список\nпубликаций"
+                        font_size: "14sp"
+                        color: 0.3, 0.3, 0.3, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.width, None
 
-            Image:
-                source: "assets/settings_icon.png"
+                    Widget:
+                        size_hint_y: 0.15
+
+            # Карточка 2: Создать публикацию
+            Button:
                 size_hint: None, None
-                size: dp(72), dp(72)
+                width: dp(145)
+                height: dp(185)
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                on_release: root.create_publication()
 
-            Label:
-                text: "Настройки"
-                font_size: "16sp"
-                halign: "center"
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1
+                    RoundedRectangle:
+                        radius: [dp(16)]
+                        pos: self.pos
+                        size: self.size
+
+                BoxLayout:
+                    orientation: "vertical"
+                    padding: dp(10)
+                    spacing: dp(5)
+
+                    Widget:
+                        size_hint_y: 0.15
+
+                    Label:
+                        text: "➕"
+                        font_size: "50sp"
+                        size_hint_y: None
+                        height: dp(70)
+                        halign: "center"
+                        valign: "middle"
+
+                    Label:
+                        text: "Создать\nпубликацию"
+                        font_size: "14sp"
+                        color: 0.3, 0.3, 0.3, 1
+                        halign: "center"
+                        valign: "middle"
+                        text_size: self.width, None
+
+                    Widget:
+                        size_hint_y: 0.15
+
+            # Карточка 3: Шаблоны
+            Button:
+                size_hint: None, None
+                width: dp(145)
+                height: dp(185)
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                on_release: root.show_templates()
+
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1
+                    RoundedRectangle:
+                        radius: [dp(16)]
+                        pos: self.pos
+                        size: self.size
+
+                BoxLayout:
+                    orientation: "vertical"
+                    padding: dp(10)
+                    spacing: dp(5)
+
+                    Widget:
+                        size_hint_y: 0.15
+
+                    Label:
+                        text: "📋"
+                        font_size: "50sp"
+                        size_hint_y: None
+                        height: dp(70)
+                        halign: "center"
+                        valign: "middle"
+
+                    Label:
+                        text: "Шаблоны"
+                        font_size: "14sp"
+                        color: 0.3, 0.3, 0.3, 1
+                        halign: "center"
+                        valign: "middle"
+
+                    Widget:
+                        size_hint_y: 0.15
+
+            # Карточка 4: Настройки
+            Button:
+                size_hint: None, None
+                width: dp(145)
+                height: dp(185)
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                on_release: root.show_settings()
+
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1
+                    RoundedRectangle:
+                        radius: [dp(16)]
+                        pos: self.pos
+                        size: self.size
+
+                BoxLayout:
+                    orientation: "vertical"
+                    padding: dp(10)
+                    spacing: dp(5)
+
+                    Widget:
+                        size_hint_y: 0.15
+
+                    Label:
+                        text: "⚙️"
+                        font_size: "50sp"
+                        size_hint_y: None
+                        height: dp(70)
+                        halign: "center"
+                        valign: "middle"
+
+                    Label:
+                        text: "Настройки"
+                        font_size: "14sp"
+                        color: 0.3, 0.3, 0.3, 1
+                        halign: "center"
+                        valign: "middle"
+
+                    Widget:
+                        size_hint_y: 0.15
