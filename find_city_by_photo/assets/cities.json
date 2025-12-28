@@ -1,0 +1,20 @@
+[
+  {"id": 1, "name": "Paris", "displayNameRu": "Париж", "image": "assets/images/Paris.jpg", "popularity": "high"},
+  {"id": 2, "name": "New York", "displayNameRu": "Нью-Йорк", "image": "assets/images/new_york.jpg", "popularity": "high"},
+  {"id": 3, "name": "Tokyo", "displayNameRu": "Токио", "image": "assets/images/Tokio.jpg", "popularity": "high"},
+  {"id": 4, "name": "Reykjavik", "displayNameRu": "Рейкьявик", "image": "assets/images/reykjavik.jpg", "popularity": "medium"},
+  {"id": 5, "name": "Bukhara", "displayNameRu": "Бухара", "image": "assets/images/bukhara.jpg", "popularity": "low"},
+  {"id": 6, "name": "Venice", "displayNameRu": "Венеция", "image": "assets/images/Venice.jpg", "popularity": "high"},
+  {"id": 7, "name": "Marrakesh", "displayNameRu": "Маракеш", "image": "assets/images/marrakesh.jpg", "popularity": "medium"},
+  {"id": 8, "name": "Berlin", "displayNameRu": "Берлин", "image": "assets/images/berlin.jpg", "popularity": "medium"},
+  {"id": 9, "name": "Moscow", "displayNameRu": "Москва", "image": "assets/images/moscow.jpg", "popularity": "medium"},
+  {"id": 10, "name": "Tashkent", "displayNameRu": "Ташкент", "image": "assets/images/Tashkent.jpg", "popularity": "medium"},
+  {"id": 11, "name": "Tel-Aviv", "displayNameRu": "Тель-Авив", "image": "assets/images/Tel-Aviv.jpg", "popularity": "high"},
+  {"id": 12, "name": "Kiev", "displayNameRu": "Киев", "image": "assets/images/kiev.jpg", "popularity": "low"},
+  {"id": 13, "name": "Quebec", "displayNameRu": "Квебек", "image": "assets/images/quebec.jpg", "popularity": "low"},
+  {"id": 14, "name": "Mexico", "displayNameRu": "Мехико", "image": "assets/images/mexico.jpg", "popularity": "low"},
+  {"id": 15, "name": "Nazareth", "displayNameRu": "Назарет", "image": "assets/images/nazareth.jpg", "popularity": "low"},
+  {"id": 16, "name": "London", "displayNameRu": "Лондон", "image": "assets/images/london.jpg", "popularity": "low"},
+  {"id": 17, "name": "Cairo", "displayNameRu": "Каир", "image": "assets/images/cairo.jpg", "popularity": "medium"},
+  {"id": 18, "name": "Pripyat", "displayNameRu": "Припять", "image": "assets/images/pripyat.jpg", "popularity": "high"}
+]
